@@ -1,0 +1,54 @@
+import empresa.*
+import remeras.*
+
+describe "Empresa de remeras - primera parte"{
+	
+			const remera1 = new RemeraLisa()
+			const remera2 = new RemeraLisa()
+			const remera3 = new Bordada()
+			const remera4 = new Sublimada()
+			const disney = new Copyright()
+			
+			fixture{
+				remera1.talle(33)
+				remera2.talle(43)
+				remera1.cantidad(1)
+				remera2.cantidad(2)
+				remera3.cantidad(1)
+				remera3.talle(44)
+				remera4.talle(42)
+				remera4.altoCm(10)
+				remera4.anchoCm(15)
+				remera4.cantidad(1)
+				disney.derechoDeAutor(100)
+				
+			}
+
+
+		test "Si la remera es lisa y talle 33 , cantidad 1 y color basico costo = 80" {
+			assert.equals(80, remera1.costo())
+			}
+			
+		test "Si hay 2 remeras  lisas de talle 43 y color distinguido costo = 220" {
+			remera2.color(distinguido)
+			assert.equals(220, remera2.costo())
+			}
+			
+		test "Una remera talle 44 color básico, con 4  colores de bordado cuesta 140 "{
+			remera3.cantidadColores(4)
+			assert.equals(140, remera3.newCosto())
+		}	
+		
+		test "Costo de remera 4"{
+			remera4.copyright(disney)
+			assert.equals(275, remera4.newCosto())
+			
+		}
+			
+		test "Empresa recibiendo pedido"{
+			empresa.cantidadXpedido(30)
+			empresa.tipoDeRemera(remera1)
+			assert.equals(2400, empresa.costoXpedido())  
+		}
+			
+}
